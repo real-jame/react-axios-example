@@ -18,9 +18,11 @@ const PersonList = (/*props: Props*/) => {
   }, []);
 
   return (
-    <ul className="list-disc">
+    <ul className="list-disc ml-5 mt-1">
       {persons.map((person) => (
-        <li key={person.id}>{person.name}</li>
+        <li key={person.id}>
+          <b>[{person.id}]</b> {person.name}
+        </li>
       ))}
     </ul>
   );

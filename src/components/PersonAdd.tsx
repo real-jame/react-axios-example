@@ -1,21 +1,20 @@
 import axios from "axios";
 import React, { useState } from "react";
 
+import API from "../api";
+
 const PersonAdd = () => {
   const [name, setName] = useState({ name: "" });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const user = {
       name: name,
     };
 
-    axios
-      .post("https://jsonplaceholder.typicode.com/users", { user })
-      .then((res) => {
-        console.log(res, res.data);
-      });
+    const res = await API.post("users", user);
+    console.log(res, res.data);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,19 +22,20 @@ const PersonAdd = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">
-        Person Name:
-        <input
-          type="text"
-          name="name"
-          onChange={handleChange}
-          className="relative rounded px-5 py-2.5 overflow-hidden border-solid border-green-900 border-2 text-gray-500 hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
-        ></input>
-      </label>
+    <form
+      onSubmit={handleSubmit}
+      className="grid grid-cols-3 grid-flow-col gap-4 bg-gray-200 border-black border-y p-1 my-2"
+    >
+      <label htmlFor="name">Person Name:</label>
+      <input
+        type="text"
+        name="name"
+        onChange={handleChange}
+        className="border-black border rounded-xl px-2 col-span-2"
+      ></input>
       <button
         type="submit"
-        className="relative rounded px-5 py-2.5 overflow-hidden bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
+        className="bg-green-500 text-white px-1 rounded-md hover:ring-2 hover:ring-green-700 hover:ring-offset-1 transition-all ease-out"
       >
         Add
       </button>

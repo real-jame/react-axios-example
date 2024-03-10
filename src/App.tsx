@@ -1,12 +1,15 @@
 import PersonAdd from "./components/PersonAdd";
 import PersonList from "./components/PersonList";
+import PersonRemove from "./components/PersonRemove";
 
 function App() {
   return (
-    <div className="ml-5 mt-1">
+    <>
+      <h1 className="text-center font-bold text-lg">React Axios Example</h1>
       <PersonAdd />
       <PersonList />
-    </div>
+      <PersonRemove />
+    </>
   );
 }
 
